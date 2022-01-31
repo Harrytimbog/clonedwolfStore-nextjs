@@ -1,7 +1,7 @@
 import React from 'react';
 import Head from 'next/head';
 import { AppBar, Container, Toolbar, Typography } from '@mui/material';
-import useStyles from './utils/styles';
+import useStyles from '../utils/styles';
 
 export default function Layout({ children }) {
   const classes = useStyles();
