@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import Head from 'next/head';
 import {
   AppBar,
@@ -19,6 +19,8 @@ import Cookies from 'js-cookie';
 export default function Layout({ title, description, children }) {
   const { state, dispatch } = useContext(Store);
   const { darkMode } = state;
+  const [mode, setMode] = useState(false);
+  useEffect(() => setMode(darkMode), [darkMode]);
 
   const theme = createTheme({
     typography: {
@@ -34,7 +36,7 @@ export default function Layout({ title, description, children }) {
       },
     },
     palette: {
-      mode: darkMode ? 'dark' : 'light',
+      mode: mode ? 'dark' : 'light',
       primary: {
         main: '#f0c000',
       },
@@ -71,7 +73,7 @@ export default function Layout({ title, description, children }) {
             </NextLink>
             <div className={classes.grow}></div>
             <div>
-              <Switch checked={darkMode} onChange={darkModeChangeHandler} />
+              <Switch checked={mode} onChange={darkModeChangeHandler} />
               <NextLink href="/cart" passHref>
                 <Link>Cart</Link>
               </NextLink>
