@@ -10,6 +10,7 @@ import {
   ThemeProvider,
   CssBaseline,
   Switch,
+  Badge,
 } from '@mui/material';
 import useStyles from '../utils/styles';
 import NextLink from 'next/link';
@@ -18,7 +19,7 @@ import Cookies from 'js-cookie';
 
 export default function Layout({ title, description, children }) {
   const { state, dispatch } = useContext(Store);
-  const { darkMode } = state;
+  const { darkMode, cart } = state;
   const [mode, setMode] = useState(false);
   useEffect(() => setMode(darkMode), [darkMode]);
 
@@ -75,7 +76,18 @@ export default function Layout({ title, description, children }) {
             <div>
               <Switch checked={mode} onChange={darkModeChangeHandler} />
               <NextLink href="/cart" passHref>
-                <Link>Cart</Link>
+                <Link>
+                  {cart.cartItems.length > 0 ? (
+                    <Badge
+                      color="secondary"
+                      badgeContent={cart.cartItems.length}
+                    >
+                      Cart
+                    </Badge>
+                  ) : (
+                    'Cart'
+                  )}
+                </Link>
               </NextLink>
               <NextLink href="/login" passHref>
                 <Link>Login</Link>
