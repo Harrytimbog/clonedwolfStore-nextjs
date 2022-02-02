@@ -12,11 +12,11 @@ import {
 import Layout from '../components/Layout';
 import NextLink from 'next/link';
 import db from '../utils/db';
-import Product from './product/models/Product';
 import axios from 'axios';
 import { useRouter } from 'next/router';
 import { useContext } from 'react';
 import { Store } from '../utils/Store';
+import Product from '../models/Product';
 
 export default function Home(props) {
   const { products } = props;
