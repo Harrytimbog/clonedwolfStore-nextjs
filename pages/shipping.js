@@ -1,11 +1,4 @@
-import {
-  Box,
-  Button,
-  List,
-  ListItem,
-  TextField,
-  Typography,
-} from '@mui/material';
+import { Button, List, ListItem, TextField, Typography } from '@mui/material';
 import React, { useContext, useEffect } from 'react';
 import Layout from '../components/Layout';
 import useStyles from '../utils/styles';
@@ -13,7 +6,7 @@ import { Store } from '../utils/Store';
 import { useRouter } from 'next/router';
 import Cookies from 'js-cookie';
 import { Controller, useForm } from 'react-hook-form';
-import CheckoutWizard from '../components/checkoutWizard';
+import CheckoutWizard from '../components/CheckoutWizard';
 
 export default function Shipping() {
   const {
@@ -23,8 +16,8 @@ export default function Shipping() {
     setValue,
   } = useForm();
 
+  const classes = useStyles();
   const router = useRouter();
-  const styles = useStyles();
   const { state, dispatch } = useContext(Store);
   const {
     userInfo,
@@ -42,7 +35,6 @@ export default function Shipping() {
     setValue('country', shippingAddress.country);
   }, []);
 
-  const classes = useStyles();
   const submitHandler = ({ fullName, address, city, postalCode, country }) => {
     dispatch({
       type: 'SAVE_SHIPPING_ADDRESS',
@@ -65,9 +57,7 @@ export default function Shipping() {
 
   return (
     <Layout title="Shipping Address">
-      <Box className={styles.checkout}>
-        <CheckoutWizard activeStep={1} />
-      </Box>
+      <CheckoutWizard activeStep={1} />
       <form onSubmit={handleSubmit(submitHandler)} className={classes.form}>
         <Typography component="h1" variant="h1">
           Shipping Address

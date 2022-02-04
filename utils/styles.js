@@ -36,6 +36,7 @@ const useStyles = makeStyles({
   },
   checkout: {
     marginTop: 10,
+    backgroundColor: 'transparent',
   },
 });
 
