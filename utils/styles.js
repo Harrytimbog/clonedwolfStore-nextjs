@@ -34,6 +34,9 @@ const useStyles = makeStyles({
     color: '#ffffff',
     textTransform: 'initial',
   },
+  checkout: {
+    marginTop: 10,
+  },
 });
 
 export default useStyles;
