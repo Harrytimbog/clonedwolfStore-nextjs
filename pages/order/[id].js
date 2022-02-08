@@ -1,5 +1,4 @@
 import {
-  Button,
   Card,
   CircularProgress,
   Grid,
@@ -15,7 +14,6 @@ import {
   Typography,
 } from '@mui/material';
 import dynamic from 'next/dynamic';
-import React, { useState } from 'react';
 import { useContext } from 'react';
 import Layout from '../../components/Layout';
 import { Store } from '../../utils/Store';
@@ -119,7 +117,7 @@ function Order({ params }) {
     }
   }, [order, successPay]);
 
-  const { closeSnackbar, enqueueSnackbar } = useSnackbar();
+  const { enqueueSnackbar } = useSnackbar();
 
   function createOrder(data, actions) {
     return actions.order
@@ -155,7 +153,7 @@ function Order({ params }) {
     });
   }
 
-  function onError(err) {
+  function onError(error) {
     enqueueSnackbar(getError(error), { variant: 'error' });
   }
 
